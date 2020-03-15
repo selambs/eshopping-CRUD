@@ -1,0 +1,17 @@
+<!-- link the head part with another ejs  -->
+<%- include('./fragments/head.ejs') %>
+
+<body>
+    <!-- link the navigation part with another ejs  -->
+    <%- include('./fragments/navigation.ejs') %>
+
+
+    <div class="container">
+        <h1>Title: <%= products.title%></h1>
+        <p><img src="<%= products.imageURL%>"></p>
+        <p>Price: $<%= products.price%></p>
+        <p>Description: <%= products.description%></p>
+    </div>
+
+    <!-- link the footer part with another ejs  -->
+    <%- include('./fragments/end.ejs') %>

@@ -1,0 +1,47 @@
+<!-- link the head part with another ejs  -->
+<%- include('./fragments/head.ejs') %>
+
+<body>
+    <!-- link the navigation part with another ejs  -->
+    <%- include('./fragments/navigation.ejs') %>
+
+    <div class="conatiner">
+        <form action="/editProduct" method="POST" class="content">
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <label for="id" hidden>ID:</label>
+                    <input type="text" class="form-control" id="id" name="_id" value="<%= prod._id%>" hidden>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" id="title" name="title" value="<%= prod.title%>">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <label for="imageURL">ImageURL</label>
+                    <input type="text" class="form-control" id="imageURL" name="imageURL" value="<%= prod.imageURL%>">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" id="price" name="price" value="<%= prod.price%>">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-8">
+                    <label for="description">Description</label>
+                    <input type="text" class="form-control" id="description" name="description"
+                        value="<%= prod.description%>">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Edit Product</button>
+        </form>
+    </div>
+
+    <!-- link the footer part with another ejs  -->
+    <%- include('./fragments/end.ejs') %>
