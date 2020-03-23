@@ -6,7 +6,7 @@
     <%- include('./fragments/navigation.ejs') %>
 
     <div class="signup-form">
-        <form action="/examples/actions/confirmation.php" method="post">
+        <form action="/signup" method="post">
             <h2>Register</h2>
             <p class="hint-text">Create your account. It's free and only takes a minute.</p>
             <div class="form-group">
@@ -24,18 +24,14 @@
                 <input type="password" class="form-control" name="password" placeholder="Password" required="required">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password"
-                    required="required">
+                <input type="text" class="form-control" name="role" placeholder="Role" required="required">
             </div>
-            <div class="form-group">
-                <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a
-                        href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
-            </div>
+
             <div class="form-group">
                 <button type="submit" class="btn btn-success btn-lg btn-block">Register Now</button>
             </div>
         </form>
-        <div class="text-center">Already have an account? <a href="#">Sign in</a></div>
+        <div class="text-center">Already have an account?<a href="/signin">Sign in</a></div>
     </div>
 
 

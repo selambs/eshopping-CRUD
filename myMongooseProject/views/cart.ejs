@@ -1,0 +1,41 @@
+<!-- link the head part with another ejs  -->
+<%- include('./fragments/head.ejs') %>
+
+<body>
+    <!-- link the navigation part with another ejs  -->
+    <%- include('./fragments/navigation.ejs') %>
+
+    <div class="container">
+        <div class="row">
+            <% if ( cart.items.length>0){%>
+            <% cart.items.forEach(prod=>{%>
+            <div class="col-sm-4">
+                <div class="panel panel-info">
+                    <div class="panel-heading"><%= prod.productId.title%> - $<%= prod.productId.price%></div>
+                    <div class="panel-body"><img src="<%= prod.productId.imageURL%>" class="img-responsive"
+                            style="width:100%" alt="Image"></div>
+
+                    <div class="panel-footer">
+                        <p id="qty"> Quantity: <%= prod.quantity%></p>
+                        <form action="/clear-cart" method="post">
+                            <input type="hidden" name="_id" value="<%= prod.productId._id%>">
+                            <button type="submit" class="btn btn-info">DELETE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+            <%}else{%>
+            <h2>YOUR CART IS EMPTY</h2>
+            <% } %>
+        </div>
+        <hr>
+        <div class="centered">
+            <form action="/place-order" method="POST">
+                <button type="submit" class="btn btn-info">Order Now!</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- link the footer part with another ejs  -->
+    <%- include('./fragments/end.ejs') %>

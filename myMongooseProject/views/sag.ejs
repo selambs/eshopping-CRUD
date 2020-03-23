@@ -1,0 +1,17 @@
+<ul class="nav navbar-nav navbar-right">
+    <% if (!isAuthenticated) { %>
+    <li><a href="/signupForm"><span
+                class="glyphicon glyphicon-user <%= path === '/signupForm' ? 'active' : '' %>"></span> Your
+            Account</a></li>
+    <li><a href="#"><span
+                class="glyphicon glyphicon-shopping-cart <%= path === '/cart' ? 'active' : '' %>"></span>
+            Cart</a></li>
+    <% } else { %>
+    <li>
+        <form action="/logout" method="post">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <button type="submit">Logout</button>
+        </form>
+    </li>
+    <% } %>
+</ul>

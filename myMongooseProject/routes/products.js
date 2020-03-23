@@ -1,18 +1,19 @@
 //make visible for other js and create middleware
 const express = require("express");
 const homeController = require("../controller/productsController");
+const userController = require("../controller/userController");
 
 //create a router
 const router = express.Router();
+
+//display all the products by using get method
+router.get(["/","/products"], homeController.displayAll);
 
 //get the form by using get method
 router.get("/form", homeController.addForm);
 
 //create/edit a data in side our data base
 router.post("/addProduct", homeController.addItem);
-
-//display all the products by using get method
-router.get("/products", homeController.displayAll);
 
 // get product by id and view the detail
 router.get("/products/:idOfItem", homeController.viewDetailByID);

@@ -3,8 +3,22 @@ const Products = require("../models/products");
 const url = require("url");
 
 //make visible for other js and create middleware
+exports.displayAll = (req, res, next) => {
+  // console.log(req.user);
+  Products.find().then(allProducts => {
+    res.render("shop", {
+      pageTitle: "Products",
+      path: "/",
+      products: allProducts
+    });
+  });
+};
+
 exports.addForm = (req, res, next) => {
-  res.render("addproducts");
+  res.render("addproducts", {
+    path: "/addproducts",
+    pageTitle: "Add Products"
+  });
 };
 
 exports.addItem = (req, res, next) => {
@@ -18,17 +32,11 @@ exports.addItem = (req, res, next) => {
   })
     .save()
     .then(() => {
-      res.redirect("/products");
+      res.redirect("/shop");
     })
     .catch(err => {
       throw "couldn't find products";
     });
-};
-
-exports.displayAll = (req, res, next) => {
-  Products.find().then(allProducts => {
-    res.render("products", { products: allProducts });
-  });
 };
 
 exports.viewDetailByID = (req, res, next) => {
@@ -38,7 +46,11 @@ exports.viewDetailByID = (req, res, next) => {
   // so we need to use .then() to recieve the promise(products in this case )
   Products.findById(getId).then(data => {
     console.log(data);
-    res.render("viewDetail", { products: data });
+    res.render("viewDetail", {
+      path: "/viewDetail",
+      pageTitle: "Product Detail",
+      products: data
+    });
   });
 };
 
@@ -46,7 +58,11 @@ exports.editForm = (req, res, next) => {
   const getId = req.params.idOfItem;
   Products.findById(getId).then(data => {
     //  console.log(getId)
-    res.render("edit", { prod: data });
+    res.render("edit", {
+      path: "/edit",
+      pageTitle: "Edit Product",
+      prod: data
+    });
   });
 };
 
@@ -72,7 +88,7 @@ exports.editProductById = (req, res, next) => {
 };
 
 exports.deleteProduct = (req, res, next) => {
-  // console.log(req.body);
+  // console.log(req.body._id);
   Products.findByIdAndDelete(req.body._id)
     .then(() => {
       res.redirect("/products");
